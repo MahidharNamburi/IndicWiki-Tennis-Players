@@ -1,6 +1,6 @@
 import json
 import string
-from hashlib import sha1
+from hashlib import sha1 
 from datetime import datetime
 import pandas as pd
 from jinja2 import Environment, FileSystemLoader, Template
@@ -98,6 +98,15 @@ def writePage(title, wikiText, f):
     return
 
 def getData(row):
+    if str(row['DOB'])!='nan':
+        ar=list(row['DOB'].split('.'))
+        row['DOB']=ar[2]+'.'+ar[1]+'.'+ar[0]
+    if str(row['current_singles'])!='nan':
+        row['current_singles']=int(row['current_singles'])
+    
+    if str(row['current_doubles'])!="nan":
+        row['current_doubles']=int(row['current_doubles'])
+    
     data = {
         
         'first_name':str(row['first_name']),
@@ -119,7 +128,7 @@ def getData(row):
         'doubles_lower_tournaments':str(row['doubles_lower_tournaments']),
         'wins_singles':str(row['wins_singles']),
         'losses_singles':str(row['losses_singles']),
-        'total_singles_matches':str(row['total_singles']),
+        'total_singles':str(row['total_singles']),
         'reference':str(row['References']),
     }
     return data

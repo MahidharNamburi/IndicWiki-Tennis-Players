@@ -1,4 +1,4 @@
-{%- macro  infobox(first_name,last_name,country,age,DOB,weight,height,current_singles,highest_singles,current_doubles,highest_doubles,singles_main_tournaments,singles_lower_tournaments,doubles_main_tournaments,doubles_lower_tournaments,wins_singles,losses_singles,total_singles_matches) -%}
+{%- macro  infobox(first_name,last_name,country,age,DOB,weight,height,current_singles,highest_singles,current_doubles,highest_doubles,singles_main_tournaments,singles_lower_tournaments,doubles_main_tournaments,doubles_lower_tournaments,wins_singles,losses_singles,total_singles) -%}
 
     {%- if age == 'nan' -%}
         {%- set age=' ' -%}
@@ -24,8 +24,8 @@
     {%- if  highest_doubles== 'nan' -%}
         {%- set highest_doubles=' ' -%}
     {%- endif -%}
-    {%- if  total_singles_matches== 'nan' -%}
-        {%- set total_singles_matches=' ' -%}
+    {%- if  total_singles== 'nan' -%}
+        {%- set total_singles=' ' -%}
     {%- endif -%}
     {%- if  wins_singles== 'nan' -%}
         {%- set wins_singles=' ' -%}
@@ -38,7 +38,7 @@
 | abovestyle = background-color:#cfc;
 | headerstyle = background-color:#ccf;text-align:center;
 | labelstyle = background-color:#ddf; width:20%;text-align:left;
-| name		= {{[first_name,last_name]|join(' ')}}
+| name		= {{[first_name,lastname]|join(' ')}}
 | label1 = దేశం 
 | data1 = {{country}}
 | label2 = వయసు
@@ -71,7 +71,7 @@
 | data16 = {{doubles_lower_tournaments}}
 | header17 = అధికారిక సింగిల్స్ గెలుపు ఓటముల సంఖ్య
 | label18 = మొత్తం అధికారిక సింగిల్స్ ఆటలు
-| data18 = {{total_singles_matches}}
+| data18 = {{total_singles}}
 | label19 = గెలిచినా ఆటలా సంఖ్య  
 | data19 = {{wins_singles}}
 | label20 = ఓడిపోయిన ఆటలా సంఖ్య
@@ -135,21 +135,21 @@
 
  
     {%- if highest_singles != 'nan' -%}
-        {%- set line1= [ " ఇప్పటి వరుకు తన టెన్నిస్ చరిత్రలో ఏ.టీ.పి(అసోసియేషన్ ఆఫ్ టెన్నిస్ ప్రొఫెషనల్స్) మేన్స్ సింగిల్స్ ర్యాంకింగ్స్లో తన అత్యున్నత స్థానం",highest_singles,".\n"] | join(' ')  -%}
+        {%- set line1= [ "ఇప్పటి వరుకు తన టెన్నిస్ చరిత్రలో ఏ.టీ.పి(అసోసియేషన్ ఆఫ్ టెన్నిస్ ప్రొఫెషనల్స్) మేన్స్ సింగిల్స్ ర్యాంకింగ్స్లో తన అత్యున్నత స్థానం",highest_singles,".\n"] | join(' ')  -%}
         {%- set line2= [ first_name,last_name,"అధికారిక సింగిల్స్ ర్యాంకింగ్స్లో",highest_singles,"తన అత్తాధిక ర్యాంక్.\n"] | join(' ')  -%}
-        {{ [line1, line2] | random }}
+        {{ [line2, line1] | random }}
     {%-   endif   -%}
  
  
     {%- if current_doubles != 'nan' -%}
         {%- set line1= [ first_name,last_name,"ప్రస్తుత ఏ.టీ.పి(అసోసియేషన్ ఆఫ్ టెన్నిస్ ప్రొఫెషనల్స్) డబుల్స్ ర్యాంకింగ్స్లో",current_doubles,"స్థానంలో ఉన్నాడు.\n"] | join(' ')  -%}
         {%- set line2= [ "2022 మేన్స్ ఏ.టీ.పి డబుల్స్ ర్యాంకింగ్స్లో",current_doubles,"స్థానంలో  ఉన్నాడు",first_name,last_name,".\n"] | join(' ')  -%}
-        {{ [line1, line2] | random }}
+        {{ [line2, line1] | random }}
     {%-   endif   -%}
  
  
     {%- if highest_doubles != 'nan' -%}
-        {%- set line1= [ " ఇప్పటి వరుకు తన టెన్నిస్ చరిత్రలో ఏ.టీ.పి(అసోసియేషన్ ఆఫ్ టెన్నిస్ ప్రొఫెషనల్స్) మేన్స్ డబుల్స్ ర్యాంకింగ్స్లో తన అత్యున్నత స్థానం",highest_doubles,".\n"] | join(' ')  -%}
+        {%- set line1= [ "ఇప్పటి వరుకు తన టెన్నిస్ చరిత్రలో ఏ.టీ.పి(అసోసియేషన్ ఆఫ్ టెన్నిస్ ప్రొఫెషనల్స్) మేన్స్ డబుల్స్ ర్యాంకింగ్స్లో తన అత్యున్నత స్థానం",highest_doubles,".\n"] | join(' ')  -%}
         {%- set line2= [ first_name,last_name,"అధికారిక డబుల్స్ ర్యాంకింగ్స్లో",highest_doubles,"తన అత్తాధిక ర్యాంక్.\n"] | join(' ')  -%}
         {{ [line1, line2] | random }}
     {%-   endif   -%}
@@ -162,7 +162,7 @@
 {{    '==టౌర్నమెంట్స్ =='  +  '\n\n'  }}
  
     {%-  if singles_main_tournaments != 'nan' and singles_main_tournaments !='0' -%}
-        {%- set line1= [ first_name,last_name," ఇప్పటి వరుకు", singles_main_tournaments," ప్రఖ్యాతకంచినా మెన్స్ సింగిల్స్ టెన్నిస్ టౌర్నమెంట్స్లో  విజయతగా నిలిచాడు.\n"] | join(' ')  -%}
+        {%- set line1= [ first_name,last_name," ఇప్పటి వరుకు", singles_main_tournaments," ప్రఖ్యాతకంచినా మెన్స్ సింగిల్స్ టెన్నిస్ టౌర్నమెంట్స్లో విజయతగా నిలిచాడు.\n"] | join(' ')  -%}
         {%- set line2= [ singles_main_tournaments," సింగిల్స్ ప్రముకమైన టెన్నిస్ టౌర్నమెంట్స్లో గెలిచాడు",first_name,".\n"] | join(' ')  -%}
         {{ [line1, line2] | random }}
     {%-   endif   -%}
@@ -175,14 +175,14 @@
 
  
     {%-  if doubles_main_tournaments != 'nan' and doubles_main_tournaments != '0' -%}
-        {%- set line1=  [first_name,last_name ,"ఇప్పటి వరుకు",doubles_main_tournaments,"ప్రఖ్యాతకంచినా మెన్స్ డబుల్స్ టెన్నిస్ టౌర్నమెంట్స్లో  విజయతగా నిలిచాడు.\n"] | join(' ') -%}
+        {%- set line1=  [first_name,last_name ,"ఇప్పటి వరుకు",doubles_main_tournaments,"ప్రఖ్యాతకంచినా మెన్స్ డబుల్స్ టెన్నిస్ టౌర్నమెంట్స్లో విజయతగా నిలిచాడు.\n"] | join(' ') -%}
         {%- set line2= [ doubles_main_tournaments,"డబుల్స్ ప్రముకమైన టెన్నిస్ టౌర్నమెంట్స్లో గెలిచాడు",last_name,".\n"] | join(' ')  -%}
-        {{ [line1, line2] | random }}
+        {{ [line2, line1] | random }}
     {%-   endif   -%}
  
  
     {%-  if doubles_lower_tournaments != 'nan' and doubles_lower_tournaments !='0'-%}
-        {%- set line1= [ first_name,last_name," ఇప్పటి వరుకు",doubles_lower_tournaments,"లోవెర్ మెన్స్ డబుల్స్  టెన్నిస్ టౌర్నమెంట్స్లో  విజయతగా నిలిచాడు."] | join(' ') -%}
+        {%- set line1= [ first_name,last_name," ఇప్పటి వరుకు",doubles_lower_tournaments,"లోవెర్ మెన్స్ డబుల్స్  టెన్నిస్ టౌర్నమెంట్స్లో విజయతగా నిలిచాడు."] | join(' ') -%}
         {{ [line1] | random }}
     {%-   endif   -%}
     {{"\n\n"}} 
@@ -191,47 +191,65 @@
  
  
  
-{%- macro  matches_wins_loses(first_name,last_name,wins_singles,loses_singles,total_singles_matches)  -%}
+{%- macro  matches_wins_loses(first_name,last_name,wins_singles,loses_singles,total_singles)  -%}
  
 {{    '== గెలుపు ఓటములు =='  +  '\n\n'  }}
  
-    {%-  if total_singles_matches !='nan' and total_singles_matches !='0'-%}
-        {%- set line1= [first_name,last_name ," ఇప్పటి వరుకు మొత్తం",total_singles_matches  ,"అధికారిక మెన్స్ సింగిల్స్ టెన్నిస్ మ్యాచ్లు ఆటాడేడు.\n"] | join(' ')-%}
-        {%- set line1= [first_name,last_name ,total_singles_matches  ,"టెన్నిస్ సింగిల్స్ సింగిల్స్ ఆటలు ఆటాడేడు.\n"] | join(' ')-%}
+    {%-  if total_singles !='nan'-%}
+        {%- set line1= [first_name,last_name ," ఇప్పటి వరుకు మొత్తం",total_singles,"అధికారిక మెన్స్ సింగిల్స్ టెన్నిస్ మ్యాచ్లు ఆటాడేడు.\n"] | join(' ')-%}
+        {%- set line1= [first_name,last_name ,total_singles  ,"టెన్నిస్ సింగిల్స్ ఆటలు ఆటాడేడు.\n"] | join(' ')-%}
         {{ [line1, line2] | random }}
     {%-   endif   -%}
  
     
     {%-  if wins_singles != 'nan' and wins_singles != '0' -%}
         {%- set line1= ["అధికారిక మెన్స్ సింగిల్స్ టెన్నిస్ ఆటలలో ఇప్పటి వరుకు",first_name ,wins_singles ,"మ్యాచ్లు గెలిచాడు.\n"] | join(' ')-%}
-        {%- set line2= ["తాను ఆడిన అధికారిక",total_singles_matches,"అట్లలలో ",wins_singles ,"ఆటలలో విజయతగా నిలిచాడు.\n"] | join(' ')-%}
-        {{ [line1, line2] | random }}
+        {%- set line2= ["తాను ఆడిన అధికారిక",total_singles,"అట్లలలో ",wins_singles ,"ఆటలలో విజయతగా నిలిచాడు.\n"] | join(' ')-%}
+        {{ [line2, line1] | random }}
         
     {%-   endif   -%}
  
  
     {%-  if losses_singles != "nan" and loses_singles!= "0" -%}
-        {%- set line1= ["అధికారిక మెన్స్ సింగిల్స్ టెన్నిస్ ఆటలలో ఇప్పటి వరుకు" ,first_name,losses_singles ," మ్యాచ్లు ఓడిపోయాడు . "] | join(' ')-%}
-        {%- set line2= ["తాను ఆడిన అధికారిక",total_singles_matches,"అట్లలలో ",losses_singles ,"ఆటలు ఓడిపోయాడు."] | join(' ')-%}
+        {%- set line1= ["అధికారిక మెన్స్ సింగిల్స్ టెన్నిస్ ఆటలలో ఇప్పటి వరుకు" ,first_name,losses_singles ," మ్యాచ్లు ఓడిపోయాడు."] | join(' ')-%}
+        {%- set line2= ["తాను ఆడిన అధికారిక",total_singles,"అట్లలలో ",losses_singles ,"ఆటలు ఓడిపోయాడు."] | join(' ')-%}
         {{ [line1,line2] | random }}
     {%- endif   -%}
  
     {{"\n\n"}}
 {%- endmacro -%}
- 
-{%- macro  references (reference)  -%}
- 
-{{"==మూలాలు=="}}
 
- {{reference}}
+ {%- macro category(country) -%}
+
+[[వర్గం:తెవికీ టెన్నిస్ క్రీడాకారులు]]
+[[వర్గం: {{country}} లో టెన్నిస్ క్రీడాకారులు ]]
+[[వర్గం: మేన్స్ సింగిల్స్ టెన్నిస్ క్రీడాకారుల]]
+[[వర్గం: మేన్స్ డబుల్స్  టెన్నిస్ క్రీడాకారుల]]
+[[వర్గం: {{country}} లో క్రీడాకారులు]]
+    
+
+{%- endmacro -%}
+ 
+{%- macro  references (reference,country)  -%}
+
+ 
+{{"==మూలాలు=="+'\n'}}
+
+  {{ '1. ఈ వివరములు [https://www.tennisexplorer.com/list-players/ | టెన్నిస్ ఎక్స్ప్లోరర్ ] వారి వెబ్సైటు నుండి సేకరించబడినవి.'}}
+  {{ '2. ['+reference+ ' | '+country+'మేన్స్ టెన్నిస్ క్రీడాకారులు.]\n'}}
  
 {%- endmacro -%}
 
- 
+
  
 {{infobox(first_name,last_name,country,age,DOB,weight,height,current_singles,highest_singles,current_doubles,highest_doubles,singles_main_tournaments,singles_lower_tournaments,doubles_main_tournaments,doubles_lower_tournaments,wins_singles,losses_singles,total_singles_matches)}}
 {{intro(first_name,last_name,country,age,plays,DOB,height,weight)}}
 {{rankings(first_name,last_name,current_singles,highest_singles,current_doubles,highest_doubles)}}
 {{tournaments(first_name,last_name,singles_main_tournaments,singles_lower_tournaments,doubles_main_tournaments,doubles_lower_tournaments)}}
-{{matches_wins_loses(first_name,last_name,wins_singles,losses_singles,total_singles_matches)}}
-{{references (reference)}}
+{{matches_wins_loses(first_name,last_name,wins_singles,losses_singles,total_singles)}}
+{{references (reference,country)}}
+{{category(country)}}
+
+
+ 
+ 

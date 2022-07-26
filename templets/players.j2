@@ -218,12 +218,25 @@
  
     {{"\n\n"}}
 {%- endmacro -%}
- 
-{%- macro  references (reference)  -%}
- 
-{{"==మూలాలు=="}}
 
- {{reference}}
+ {%- macro category(country) -%}
+
+	 [[వర్గం:తెవికీ టెన్నిస్ క్రీడాకారులు]]
+    [[వర్గం: {{country}} లో టెన్నిస్ క్రీడాకారులు ]]
+    [[వర్గం: మేన్స్ సింగిల్స్ టెన్నిస్ క్రీడాకారుల]]
+    [[వర్గం: మేన్స్ డబుల్స్  టెన్నిస్ క్రీడాకారుల]]
+    [[వర్గం: {{country}} లో క్రీడాకారులు]]
+    
+
+{%- endmacro -%}
+ 
+{%- macro  references (reference,country)  -%}
+
+ 
+{{"==మూలాలు=="+'\n\n'}}
+
+  {{ '1. ఈ వివరములు [https://www.tennisexplorer.com/list-players/ | టెన్నిస్ ఎక్స్ప్లోరర్ ] వారి వెబ్సైటు నుండి సేకరించబడినవి.\n'}}
+  {{ '2. ['+website+ '|'+country+'మేన్స్ టెన్నిస్ క్రీడాకారులు.]\n'}}
  
 {%- endmacro -%}
 
@@ -234,4 +247,9 @@
 {{rankings(first_name,last_name,current_singles,highest_singles,current_doubles,highest_doubles)}}
 {{tournaments(first_name,last_name,singles_main_tournaments,singles_lower_tournaments,doubles_main_tournaments,doubles_lower_tournaments)}}
 {{matches_wins_loses(first_name,last_name,wins_singles,losses_singles,total_singles_matches)}}
-{{references (reference)}}
+{{references (reference,country)}}
+{{category(country)}}
+
+
+ 
+ 
