@@ -44,7 +44,7 @@ tewiki = '''<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:x
 
 # 3000000 - 3500000 => school's articles
 # Global Variables
-page_id = 6000001
+page_id = 1100001
 
 user_id = "16350"
 username = "mahidhar"
